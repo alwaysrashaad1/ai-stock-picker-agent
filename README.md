@@ -1,43 +1,72 @@
-# FinancialResearcher Crew
+# AI Stock Picker – Multi-Agent Investment Recommendation System
+
+## Overview
+
+AI Stock Picker is a multi-agent system designed to identify trending companies, research their financials, and select high-potential stocks. Built with Python, LangChain, and various AI agents, it leverages GPT-5-mini for natural language reasoning and decision-making, enabling data-driven investment recommendations.
+
+The system is modular, allowing you to extend or customize agents for different research strategies, sources, or financial goals.
+
+## Features
+
+* **Trending Company Discovery:** An agent scans news, social media, and financial sources to identify trending companies.
+* **Financial Research:** An agent analyzes company financials, news, and market sentiment.
+* **Stock Selection:** A decision-making agent evaluates potential investments based on the research results.
+* **Multi-Agent Architecture:** Each agent has a clearly defined role, enabling scalability and experimentation.
+* **JSON & SQLite Integration:** Structured output allows easy storage, retrieval, and further analysis of investment data.
+* **Prompt Optimization:** Carefully designed prompts improve accuracy, reasoning, and consistency of the agents’ outputs.
+
+## Files
+
+* `main.py` (or entrypoint file): Runs the AI Stock Picker and orchestrates agents.
+* `agents/` folder: Contains modules for each AI agent (trending company, research, stock selection).
+* `prompts/` folder: Contains prompt templates used for reasoning, evaluation, and data extraction.
+* `utils.py`: Helper functions for data processing, API calls, and formatting.
+* `database.db` (optional): SQLite database for storing stock data and research results.
 
 ## Installation
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
-
-First, if you haven't already, install uv:
+1. Clone the repository:
 
 ```bash
-pip install uv
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+cd YOUR_REPO
 ```
 
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/financial_researcher/config/agents.yaml` to define your agents
-- Modify `src/financial_researcher/config/tasks.yaml` to define your tasks
-- Modify `src/financial_researcher/crew.py` to add your own logic, tools and specific args
-- Modify `src/financial_researcher/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+2. Create and activate a virtual environment:
 
 ```bash
-$ crewai run
+python -m venv .venv
+source .venv/bin/activate   # Linux/Mac
+.venv\Scripts\activate      # Windows
 ```
 
-This command initializes the financial_researcher Crew, assembling the agents and assigning them tasks as defined in your configuration.
+3. Install dependencies:
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+```bash
+pip install -r requirements.txt
+```
 
-## Understanding Your Crew
+4. Add any required API keys in a `.env` file:
 
-The financial_researcher Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+```env
+SERPER_API_KEY=your_serper_key
+PUSHOVER_TOKEN=your_pushover_token
+PUSHOVER_USER=your_pushover_user
+```
+
+## Usage
+
+1. Run the main script to start the multi-agent workflow:
+
+```bash
+python main.py
+```
+
+2. Agents will:
+
+   * Identify trending companies
+   * Research company financials
+   * Evaluate and select top stocks
+
+3. Output will be stored in structured JSON or SQLite, depending on your configuration.
 
